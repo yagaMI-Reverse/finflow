@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+    background-image:
+      radial-gradient(60rem 60rem at 12% -10%, rgba(108, 132, 251, 0.18), transparent 60%),
+      radial-gradient(50rem 50rem at 100% 0%, rgba(139, 92, 246, 0.14), transparent 55%),
+      radial-gradient(46rem 46rem at 50% 120%, rgba(47, 199, 156, 0.16), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight text-ink;
+  }
+
+  /* Visible, friendly focus ring for keyboard users. */
+  :focus-visible {
+    outline: 3px solid theme("colors.brand.500");
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+}
+
+@layer components {
+  .clay-card {
+    @apply rounded-clay bg-surface shadow-clay;
+  }
+
+  .clay-pill {
+    @apply rounded-full bg-surface shadow-clay-sm;
+  }
+
+  /* Soft 3D gradient button (mint -> brand -> violet). */
+  .btn-clay {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-display font-700
+      text-white shadow-clay-brand transition-transform duration-200 ease-out;
+    background-image: linear-gradient(135deg, #4f63ef 0%, #7c3aed 100%);
+  }
+  .btn-clay:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+  .btn-clay:active {
+    transform: scale(0.96);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-surface px-6 py-3
+      font-display font-700 text-ink shadow-clay-sm transition-transform duration-200 ease-out;
+  }
+  .btn-ghost:hover {
+    transform: translateY(-2px);
+  }
+  .btn-ghost:active {
+    transform: scale(0.96);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(120deg, #10a983 0%, #4f63ef 45%, #7c3aed 100%);
+  }
+
+  .section-pad {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
